@@ -7,7 +7,9 @@ import javax.sql.DataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.sabzzil.domain.BoardVO;
 import org.sabzzil.domain.UserVO;
+import org.sabzzil.mapper.BoardMapper;
 import org.sabzzil.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,7 +26,10 @@ public class Project1ApplicationTests {
 	private SqlSessionFactory sqlSession;
 	
 	@Autowired
-	private UserMapper mapper;
+	private UserMapper userMapper;
+	
+	@Autowired
+	private BoardMapper boardMapper;
 	
 	@Test
 	public void contextLoads() {
@@ -52,7 +57,15 @@ public class Project1ApplicationTests {
 		vo.setUname("Park");
 		vo.setEmail("test@test.com");
 		
-		mapper.create(vo);
+		userMapper.create(vo);
+	}
+	
+	@Test
+	public void testXmlMapper() throws Exception {
+		int bno = 470;
+		BoardVO boardVO;
+		boardVO = boardMapper.test(bno);
+		System.out.println(boardVO.getContent());
 	}
 
 }

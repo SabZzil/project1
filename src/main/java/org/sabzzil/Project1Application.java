@@ -9,6 +9,8 @@ import org.sabzzil.service.BoardService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 @SpringBootApplication
 @MapperScan(value={"org.sabzzil.mapper"})
@@ -22,6 +24,12 @@ public class Project1Application {
 	public SqlSessionFactory sqlSessionFactory(DataSource datasource) throws Exception {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(datasource);
+		
+		Resource[] res = new PathMatchingResourcePatternResolver().
+							getResources("classpath:mappers/*Mapper.xml");
+		
+		sessionFactory.setMapperLocations(res);
+				
 		return sessionFactory.getObject();
 	}
 	

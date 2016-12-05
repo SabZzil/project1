@@ -27,4 +27,6 @@ public interface BoardMapper {
 	@Insert("insert into tbl_board (title, content, writer) "
 			+ "values (#{title}, #{content}, #{writer})")
 	public void create(BoardVO boardVO) throws Exception;
+	
+	public BoardVO test(@Param("bno") int bno) throws Exception;
 }
