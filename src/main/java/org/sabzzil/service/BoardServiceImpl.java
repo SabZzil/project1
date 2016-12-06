@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.sabzzil.domain.BoardVO;
 import org.sabzzil.domain.Criteria;
+import org.sabzzil.domain.SearchCriteria;
 import org.sabzzil.persistence.BoardDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,13 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> list(Criteria cri) throws Exception {
 		cri.setTotalArticles(dao.totalArticles());
 		return dao.list(cri.getStart(), cri.getArticlePerPage());
+	}
+	
+	@Override
+	public List<BoardVO> sList(SearchCriteria cri) throws Exception {
+		cri.setTotalArticles(dao.sTotalArticles(cri.getSearchType(), cri.getKeyword()));
+		return dao.sList(cri.getStart(), cri.getArticlePerPage(), 
+				cri.getSearchType(), cri.getKeyword());
 	}
 	
 	@Transactional

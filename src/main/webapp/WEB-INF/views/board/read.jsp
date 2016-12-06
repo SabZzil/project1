@@ -125,7 +125,7 @@
 	<tr><td>내용</td><td>${boardVO.getContent()}</td></tr>
 </table>
 
-<a href="list?page=${cri.getPage()}&articlePerPage=${cri.getArticlePerPage()}">
+<a href="slist?page=${cri.getPage()}&articlePerPage=${cri.getArticlePerPage()}&searchType=${cri.getSearchType()}&keyword=${cri.getKeyword()}">
 목록으로
 </a>
 

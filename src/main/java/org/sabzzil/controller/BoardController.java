@@ -2,6 +2,7 @@ package org.sabzzil.controller;
 
 import org.sabzzil.domain.BoardVO;
 import org.sabzzil.domain.Criteria;
+import org.sabzzil.domain.SearchCriteria;
 import org.sabzzil.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,8 +26,15 @@ public class BoardController {
 		return "board/list";
 	}
 	
+	@RequestMapping(value = "/slist", method = RequestMethod.GET)
+	public void slist(@ModelAttribute("cri") SearchCriteria cri, 
+			Model model) throws Exception {
+		model.addAttribute("list", service.sList(cri));
+		
+	}
+	
 	@RequestMapping(value = "/read")
-	public String read(int bno, @ModelAttribute("cri") Criteria cri, 
+	public String read(int bno, @ModelAttribute("cri") SearchCriteria cri, 
 			Model model) throws Exception {
 		
 		model.addAttribute("boardVO", service.read(bno));

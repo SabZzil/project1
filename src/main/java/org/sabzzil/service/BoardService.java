@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.sabzzil.domain.BoardVO;
 import org.sabzzil.domain.Criteria;
+import org.sabzzil.domain.SearchCriteria;
 
 public interface BoardService {
 
@@ -12,4 +13,6 @@ public interface BoardService {
 	public BoardVO read(int bno) throws Exception;
 	
 	public void create(BoardVO boardVO) throws Exception;
+	
+	public List<BoardVO> sList(SearchCriteria cri) throws Exception;
 }

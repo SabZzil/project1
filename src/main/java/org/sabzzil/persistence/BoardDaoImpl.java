@@ -24,6 +24,17 @@ public class BoardDaoImpl implements BoardDao {
 	}
 	
 	@Override
+	public List<BoardVO> sList(int start, int articlePerPage,
+			String searchType, String keyword) throws Exception {
+		return mapper.sList(start, articlePerPage, searchType, keyword);
+	}
+	
+	@Override
+	public int sTotalArticles(String searchType, String keyword) throws Exception {
+		return mapper.sTotalArticles(searchType, keyword);
+	}
+	
+	@Override
 	public BoardVO read(int bno) throws Exception {
 		return mapper.read(bno);
 	}

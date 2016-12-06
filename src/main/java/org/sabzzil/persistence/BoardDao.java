@@ -11,6 +11,11 @@ public interface BoardDao {
 	
 	public int totalArticles() throws Exception;
 	
+	public List<BoardVO> sList(int start, int articlePerPage,
+			String searchType, String keyword) throws Exception;
+	
+	public int sTotalArticles(String searchType, String keyword) throws Exception;	
+	
 	public BoardVO read(int bno) throws Exception;
 	
 	public void incViewcnt(int bno) throws Exception;

@@ -29,4 +29,12 @@ public interface BoardMapper {
 	public void create(BoardVO boardVO) throws Exception;
 	
 	public BoardVO test(@Param("bno") int bno) throws Exception;
+	
+	public List<BoardVO> sList(@Param("start") int start, 
+			@Param("articlePerPage") int articlePerPage,
+			@Param("searchType") String searchType,
+			@Param("keyword") String keyword) throws Exception;
+	
+	public int sTotalArticles(@Param("searchType") String searchType,
+			@Param("keyword") String keyword) throws Exception;
 }

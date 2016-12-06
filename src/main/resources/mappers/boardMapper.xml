@@ -8,8 +8,60 @@
 	<select id="test" resultType="org.sabzzil.domain.BoardVO">
 		select * from tbl_board where bno = #{bno}
 	</select>
-	
-	
-	
+
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				and title like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'c'.toString()">
+				and content like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'w'.toString()">
+				and writer like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'tc'.toString()">
+				and ( title like CONCAT('%', #{keyword}, '%') OR content like
+				CONCAT('%', #{keyword}, '%'))
+			</if>
+			<if test="searchType == 'cw'.toString()">
+				and ( content like CONCAT('%', #{keyword}, '%') OR writer like
+				CONCAT('%', #{keyword}, '%'))
+			</if>
+			<if test="searchType == 'tcw'.toString()">
+				and ( title like CONCAT('%', #{keyword}, '%')
+				OR
+				content like CONCAT('%', #{keyword}, '%')
+				OR
+				writer like CONCAT('%', #{keyword}, '%'))
+			</if>
+		</if>
+	</sql>
+
+	<select id="sList" resultType="org.sabzzil.domain.BoardVO">
+<![CDATA[  
+  select * 
+  from tbl_board 
+  where bno > 0 
+]]>
+
+		<include refid="search"></include>
+  
+<![CDATA[    
+  order by bno desc
+  limit #{start}, #{articlePerPage}
+]]>
+	</select>
+
+	<select id="sTotalArticles" resultType="int">
+<![CDATA[  
+  select count(bno) 
+  from tbl_board 
+  where bno > 0 
+]]>
+		<include refid="search"></include>
+
+	</select>
+
 	
 </mapper>
