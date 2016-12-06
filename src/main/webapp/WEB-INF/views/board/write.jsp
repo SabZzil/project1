@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Write Article</title>
 </head>
 <body>
 
-	<form method="post">
+	<form action="/board/write" method="post">
 		<div>
 			<label>Title</label>
 			<input type='text' name='title' placeholder='Enter title'/>

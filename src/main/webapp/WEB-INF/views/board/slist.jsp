@@ -18,6 +18,11 @@
 							+ "searchType=" + $("select option:selected").val()
 							+ "&keyword=" + $("#keyword").val();
 		});
+		
+		$("#writeBtn").on("click", function(event) {
+			event.preventDefault();
+			self.location = "/board/write";
+		});
 	});
 
 </script>
@@ -53,6 +58,7 @@
 	</select>
 	<input id="keyword" type='text' name='keyword' value="${cri.getKeyword()}">
 	<input id="searchBtn" type="submit" value="검색">
+	<input id="writeBtn" type="submit" value="글쓰기">
 </div>
 
 <table>

@@ -49,6 +49,6 @@ public class BoardController {
 		
 		service.create(boardVO);
 		rttr.addFlashAttribute("msg", "success");
-		return "redirect:/board/list";
+		return "redirect:/board/slist";
 	}
 }
