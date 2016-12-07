@@ -37,4 +37,7 @@ public interface BoardMapper {
 	
 	public int sTotalArticles(@Param("searchType") String searchType,
 			@Param("keyword") String keyword) throws Exception;
+	
+	@Insert("insert into tbl_attach (fullName, bno) values (#{fullName}, LAST_INSERT_ID())")
+	public void addAttach(@Param("fullName") String fullName) throws Exception;
 }

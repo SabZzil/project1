@@ -40,5 +40,14 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void create(BoardVO boardVO) throws Exception {
 		dao.create(boardVO);
+		String[] files = boardVO.getFiles();
+		
+		if(files==null) {
+			return;
+		}
+		
+		for(String fileName : files) {
+			dao.addAttach(fileName);
+		}
 	}
 }

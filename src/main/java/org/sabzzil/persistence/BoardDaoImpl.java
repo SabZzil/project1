@@ -48,4 +48,9 @@ public class BoardDaoImpl implements BoardDao {
 	public void create(BoardVO boardVO) throws Exception {
 		mapper.create(boardVO);
 	}
+	
+	@Override
+	public void addAttach(String fullName) throws Exception {
+		mapper.addAttach(fullName);
+	}
 }

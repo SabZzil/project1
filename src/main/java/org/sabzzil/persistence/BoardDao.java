@@ -21,4 +21,6 @@ public interface BoardDao {
 	public void incViewcnt(int bno) throws Exception;
 	
 	public void create(BoardVO boardVO) throws Exception;
+	
+	public void addAttach(String fullName) throws Exception;
 }
