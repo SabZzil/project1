@@ -17,7 +17,7 @@ function getFileInfo(fullName) {
 		
 		getLink = "/board/displayFile?fileName=" + front + end;
 	} else {
-		imgsrc = "resources/line.jpg";
+		imgsrc = "http://www.navercorp.com/ko/img/bg_corp_down.gif";
 		fileLink = fullName.substr(12);
 		getLink = "/board/displayFile?fileName=" + fullName;
 	}

@@ -23,4 +23,8 @@ public interface BoardDao {
 	public void create(BoardVO boardVO) throws Exception;
 	
 	public void addAttach(String fullName) throws Exception;
+	
+	public List<String> getAttach(int bno) throws Exception;
+	
+	public void modify(BoardVO boardVO) throws Exception;
 }

@@ -21,6 +21,9 @@ public interface BoardMapper {
 	@Select("select * from tbl_board where bno=#{bno}")
 	public BoardVO read(@Param("bno") int bno) throws Exception;
 	
+	@Select("select fullName from tbl_attach where bno=#{bno}")
+	public List<String> getAttach(@Param("bno") int bno) throws Exception;
+	
 	@Update("update tbl_board set viewcnt = viewcnt + 1 where bno=#{bno}")
 	public void incViewcnt(@Param("bno") int bno) throws Exception;
 	
@@ -40,4 +43,9 @@ public interface BoardMapper {
 	
 	@Insert("insert into tbl_attach (fullName, bno) values (#{fullName}, LAST_INSERT_ID())")
 	public void addAttach(@Param("fullName") String fullName) throws Exception;
+	
+	@Update("update tbl_board set title=#{title}, content=#{content}, "
+			+ "writer=#{writer} where bno=#{bno}")
+	public void modify(BoardVO boardVO) throws Exception;
+	
 }

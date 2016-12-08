@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Read Article</title>
 
+<script type="text/javascript" src="/resources/js/upload.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
 <script>
@@ -74,6 +75,22 @@
 			var pt = "/board/reply/${boardVO.getBno()}/" + p;
 			getReplies(pt);
 		});
+		
+		$.getJSON("/board/getAttach/"+$("#bno").val(),function(list){
+			$(list).each(function(){
+				
+				var fileInfo = getFileInfo(this);
+				
+				var html = "<li><img src='" + fileInfo.imgsrc + "'/>"
+				+ "<a href='" + fileInfo.getLink + "'>" + fileInfo.fileName + "</a>"
+			//	+ " " + "<a href='" + fileInfo.fullName + "' class='delBtn'>X</a>" 
+				+ "</li>";
+				
+				 $("#attachList").append(html);
+				
+			});
+		});
+		
 	});
 	
 	function getReplies(path) {
@@ -125,9 +142,24 @@
 	<tr><td>내용</td><td>${boardVO.getContent()}</td></tr>
 </table>
 
+<ul id="attachList"></ul>
+
 <a href="slist?page=${cri.getPage()}&articlePerPage=${cri.getArticlePerPage()}&searchType=${cri.getSearchType()}&keyword=${cri.getKeyword()}">
 목록으로
 </a>
+
+<form action="modifyA" method="post">
+	<input type="hidden" name="bno" value="${boardVO.getBno()}"/>
+	<input type="hidden" name="title" value="${boardVO.getTitle()}"/>
+	<input type="hidden" name="content" value="${boardVO.getContent()}"/>
+	<input type="hidden" name="writer" value="${boardVO.getWriter()}"/>
+	<input type="hidden" name="page" value="${cri.getPage()}"/>
+	<input type="hidden" name="articlePerPage" value="${cri.getArticlePerPage()}"/>
+	<input type="hidden" name="articlePerPage" value="${cri.getArticlePerPage()}"/>
+	<input type="hidden" name="searchType" value="${cri.getSearchType()}"/>
+	<input type="hidden" name="keyword" value="${cri.getKeyword()}"/>
+	<input type="submit" value="수정하기">
+</form>
 
 <div id="reply">reply</div>
 

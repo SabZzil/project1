@@ -50,4 +50,14 @@ public class BoardServiceImpl implements BoardService {
 			dao.addAttach(fileName);
 		}
 	}
+	
+	@Override
+	public List<String> getAttach(int bno) throws Exception {
+		return dao.getAttach(bno);
+	}
+	
+	@Override
+	public void modify(BoardVO boardVO) throws Exception {
+		dao.modify(boardVO);
+	}
 }

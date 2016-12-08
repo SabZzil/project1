@@ -54,7 +54,7 @@
 				}
 			});
 		});
-//삭제 버튼 구현해야함
+
 		$("#uploadedList").on("click", ".delBtn", function(event) {
 			event.preventDefault();
 			var that = $(this);
@@ -89,26 +89,44 @@
 			that.get(0).submit();
 		});
 		
+		$.getJSON("/board/getAttach/"+${boardVO.getBno()},function(list){
+			$(list).each(function(){
+				
+				var fileInfo = getFileInfo(this);
+				
+				var html = "<li><img src='" + fileInfo.imgsrc + "'/>"
+				+ "<a href='" + fileInfo.getLink + "'>" + fileInfo.fileName + "</a>"
+				+ " " + "<a href='" + fileInfo.fullName + "' class='delBtn'>X</a>" 
+				+ "</li>";
+				
+				 $("#uploadedList").append(html);
+				
+			});
+		});
+		
+		
+		
 	});
 </script>
 
 </head>
 <body>
 
-	<form id="registerForm" action="/board/write" method="post">
+	<form id="registerForm" action="/board/modifyPOST" method="post">
+		<input type='hidden' name='bno' value='${boardVO.getBno()}'/>
 		<div>
 			<label>Title</label>
-			<input type='text' name='title' placeholder='Enter title'/>
+			<input type='text' name='title' value='${boardVO.getTitle()}'/>
 		</div>
 		<div>
 			<label>Content</label>
-			<textarea name='content' row="3" placeholder='Enter content'></textarea>
+			<textarea name='content' row="3">${boardVO.getContent()}</textarea>
 		</div>
 		<div>
 			<label>Writer</label>
-			<input type='text' name='writer' placeholder='Enter writer'/>
+			<input type='text' name='writer' value='${boardVO.getWriter()}'/>
 		</div>
-		<input type="submit" value="글쓰기"/>
+		<input type="submit" value="수정하기"/>
 	</form>
 	
 	<div>

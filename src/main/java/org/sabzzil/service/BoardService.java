@@ -15,4 +15,8 @@ public interface BoardService {
 	public void create(BoardVO boardVO) throws Exception;
 	
 	public List<BoardVO> sList(SearchCriteria cri) throws Exception;
+	
+	public List<String> getAttach(int bno) throws Exception;
+	
+	public void modify(BoardVO boardVO) throws Exception;
 }

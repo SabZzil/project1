@@ -53,4 +53,14 @@ public class BoardDaoImpl implements BoardDao {
 	public void addAttach(String fullName) throws Exception {
 		mapper.addAttach(fullName);
 	}
+	
+	@Override
+	public List<String> getAttach(int bno) throws Exception {
+		return mapper.getAttach(bno);
+	}
+	
+	@Override
+	public void modify(BoardVO boardVO) throws Exception {
+		mapper.modify(boardVO);
+	}
 }
