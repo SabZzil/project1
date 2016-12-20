@@ -153,18 +153,11 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/modifyPOST", method = RequestMethod.POST)
-	public String modifyPOST(BoardVO boardVO, 
-			SearchCriteria cri, 
-			RedirectAttributes rttr) throws Exception {
-		
-		rttr.addAttribute("cri", cri);
+	public String modifyPOST(@ModelAttribute("boardVO") BoardVO boardVO, 
+			@ModelAttribute("cri") SearchCriteria cri) throws Exception {
 		
 		service.modify(boardVO);
-		
-		rttr.addAttribute("boardVO", service.read(boardVO.getBno()));
-		
-		System.out.println(boardVO.getFiles());
-				
+
 		return "redirect:/board/slist";
 	}
 	

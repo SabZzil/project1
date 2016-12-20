@@ -22,4 +22,7 @@ public interface UserMapper {
 	@Delete("delete from tbl_user where uid=#{uid}")
 	public void delete(String uid) throws Exception;
 	
+	@Select("select * from tbl_user where uid=#{uid} and upw=#{upw}")
+	public UserVO login(UserVO userVO) throws Exception;
+	
 }

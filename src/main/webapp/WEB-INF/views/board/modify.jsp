@@ -127,6 +127,9 @@
 			<input type='text' name='writer' value='${boardVO.getWriter()}'/>
 		</div>
 		<input type="submit" value="수정하기"/>
+		<input type='hidden' name='searchType' value='${cri.getSearchType()}'/>
+		<input type='hidden' name='keyword' value='${cri.getKeyword()}'/>
+		<input type='hidden' name='page' value='${cri.getPage()}'/>
 	</form>
 	
 	<div>

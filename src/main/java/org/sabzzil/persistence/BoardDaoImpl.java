@@ -63,4 +63,16 @@ public class BoardDaoImpl implements BoardDao {
 	public void modify(BoardVO boardVO) throws Exception {
 		mapper.modify(boardVO);
 	}
+	
+	@Override
+	public void removeAttach(int bno) throws Exception {
+		mapper.removeAttach(bno);
+	}
+	
+	@Override
+	public void replaceAttach(String[] files, int bno) throws Exception {
+		for(String fullName : files) {
+			mapper.replaceAttach(fullName, bno);
+		}
+	}
 }

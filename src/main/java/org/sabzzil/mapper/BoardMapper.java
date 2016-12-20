@@ -2,6 +2,7 @@ package org.sabzzil.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -31,6 +32,20 @@ public interface BoardMapper {
 			+ "values (#{title}, #{content}, #{writer})")
 	public void create(BoardVO boardVO) throws Exception;
 	
+	@Insert("insert into tbl_attach (fullName, bno) values (#{fullName}, LAST_INSERT_ID())")
+	public void addAttach(@Param("fullName") String fullName) throws Exception;
+	
+	@Update("update tbl_board set title=#{title}, content=#{content}, "
+			+ "writer=#{writer} where bno=#{bno}")
+	public void modify(BoardVO boardVO) throws Exception;
+	
+	@Delete("delete from tbl_attach where bno=#{bno}")
+	public void removeAttach(@Param("bno") int bno) throws Exception;
+	
+	@Insert("insert into tbl_attach (fullName, bno) values (#{fullName}, #{bno})")
+	public void replaceAttach(@Param("fullName") String fullName,
+			@Param("bno") int bno) throws Exception;
+
 	public BoardVO test(@Param("bno") int bno) throws Exception;
 	
 	public List<BoardVO> sList(@Param("start") int start, 
@@ -40,12 +55,6 @@ public interface BoardMapper {
 	
 	public int sTotalArticles(@Param("searchType") String searchType,
 			@Param("keyword") String keyword) throws Exception;
-	
-	@Insert("insert into tbl_attach (fullName, bno) values (#{fullName}, LAST_INSERT_ID())")
-	public void addAttach(@Param("fullName") String fullName) throws Exception;
-	
-	@Update("update tbl_board set title=#{title}, content=#{content}, "
-			+ "writer=#{writer} where bno=#{bno}")
-	public void modify(BoardVO boardVO) throws Exception;
+
 	
 }

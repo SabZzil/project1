@@ -56,8 +56,17 @@ public class BoardServiceImpl implements BoardService {
 		return dao.getAttach(bno);
 	}
 	
+	@Transactional
 	@Override
 	public void modify(BoardVO boardVO) throws Exception {
 		dao.modify(boardVO);
+		dao.removeAttach(boardVO.getBno());
+		
+		if(boardVO.getFiles()==null) {
+			return;
+		}
+		
+		dao.replaceAttach(boardVO.getFiles(), boardVO.getBno());
+		
 	}
 }

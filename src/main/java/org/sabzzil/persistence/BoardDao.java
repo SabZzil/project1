@@ -27,4 +27,8 @@ public interface BoardDao {
 	public List<String> getAttach(int bno) throws Exception;
 	
 	public void modify(BoardVO boardVO) throws Exception;
+	
+	public void removeAttach(int bno) throws Exception;
+	
+	public void replaceAttach(String[] files, int bno) throws Exception;
 }
