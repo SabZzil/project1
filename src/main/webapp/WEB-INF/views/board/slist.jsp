@@ -4,8 +4,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 <title>List</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
@@ -61,20 +68,20 @@
 	<input id="writeBtn" type="submit" value="글쓰기">
 </div>
 
-<table>
+<table class="table table-striped table-condensed">
 	<tr>
 		<th>번호</th><th>제목</th><th>작성자</th><th>읽은수</th><th>리플수</th>
 	</tr>
 	<c:forEach items="${list}" var="boardVO">
 	<tr>
-		<td align="center">${boardVO.getBno()}</td>
-		<td align="center">
+		<td>${boardVO.getBno()}</td>
+		<td>
 			<a href="read?bno=${boardVO.getBno()}&page=${cri.getPage()}&articlePerPage=${cri.getArticlePerPage()}&searchType=${cri.getSearchType()}&keyword=${cri.getKeyword()}">
 			${boardVO.getTitle()}</a>
 		</td>
-		<td align="center">${boardVO.getWriter()}</td>
-		<td align="center">${boardVO.getViewcnt()}</td>
-		<td align="center">${boardVO.getReplycnt()}</td>
+		<td>${boardVO.getWriter()}</td>
+		<td>${boardVO.getViewcnt()}</td>
+		<td>${boardVO.getReplycnt()}</td>
 	</tr>
 	</c:forEach>
 	<tr>

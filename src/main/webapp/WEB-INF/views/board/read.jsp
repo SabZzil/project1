@@ -104,9 +104,13 @@
 				replies += "<tr><td>" + replyVO.replyer + "</td>"
 							+ "<td>" + replyVO.replytext +"</td>"
 							+ "<td>"+ date + "</td>"
-							+ "<td> </td>"
-							+ "<td><a class='delBtn' href='" + replyVO.rno
-							+ "'>삭제</a></td></tr>"
+							+ "<td> </td>";
+				if("${login.uid}"==replyVO.replyer) {
+					replies += "<td><a class='delBtn' href='" + replyVO.rno
+							+ "'>삭제</a></td>";
+				}
+							
+							+ "</tr>";
 			});
 			replies += "</table>";
 			$("#reply").html(replies);
@@ -158,7 +162,11 @@
 	<input type="hidden" name="articlePerPage" value="${cri.getArticlePerPage()}"/>
 	<input type="hidden" name="searchType" value="${cri.getSearchType()}"/>
 	<input type="hidden" name="keyword" value="${cri.getKeyword()}"/>
-	<input type="submit" value="수정하기">
+	
+	<c:if test="${login.uid == boardVO.writer}">
+		<input type="submit" value="수정하기">
+	</c:if>
+
 </form>
 
 <div id="reply">reply</div>
@@ -166,9 +174,16 @@
 <form id="addReplyForm" action="/board/reply/add" method="post">
 	<input id="bno" type="hidden" name="bno" value="${boardVO.getBno()}" readonly/>
 	<div class="replyInput" style="display:none">
-		<input id="replyer" type="text" name="replyer" placeholder="replyer"/>
-		<input id="replytext" type="text" name="replytext" placeholder="replytext"/>
-		<input id="addReplySubmit" type="submit" value="등록">
+		<c:if test="${not empty login}">
+			<input id="replyer" type="text" name="replyer" value="${login.uid}" readonly/>
+			<input id="replytext" type="text" name="replytext" placeholder="replytext"/>
+			<input id="addReplySubmit" type="submit" value="등록">
+		</c:if>
+		<c:if test="${empty login}">
+			please login.<br>
+			<a href="/user/login">go login</a>
+		</c:if>
+	
 	</div>
 </form>
 

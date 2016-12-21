@@ -54,7 +54,7 @@
 				}
 			});
 		});
-//삭제 버튼 구현해야함
+
 		$("#uploadedList").on("click", ".delBtn", function(event) {
 			event.preventDefault();
 			var that = $(this);
@@ -106,7 +106,7 @@
 		</div>
 		<div>
 			<label>Writer</label>
-			<input type='text' name='writer' placeholder='Enter writer'/>
+			<input type='text' name='writer' value="${login.uid}" readonly/>
 		</div>
 		<input type="submit" value="글쓰기"/>
 	</form>

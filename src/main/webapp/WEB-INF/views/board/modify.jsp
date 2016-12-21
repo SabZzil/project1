@@ -124,7 +124,7 @@
 		</div>
 		<div>
 			<label>Writer</label>
-			<input type='text' name='writer' value='${boardVO.getWriter()}'/>
+			<input type='text' name='writer' value='${boardVO.writer}' readonly/>
 		</div>
 		<input type="submit" value="수정하기"/>
 		<input type='hidden' name='searchType' value='${cri.getSearchType()}'/>
