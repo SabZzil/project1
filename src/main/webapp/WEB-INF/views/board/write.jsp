@@ -3,8 +3,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Write Article</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <style>
 	#fileDrop {
@@ -94,31 +100,38 @@
 
 </head>
 <body>
-
+<div class="col-md-6">
+	<h2>글쓰기</h2>
 	<form id="registerForm" action="/board/write" method="post">
-		<div>
-			<label>Title</label>
-			<input type='text' name='title' placeholder='Enter title'/>
+		<div class="form-group">
+			<label for="exampleInputEmail1">Title</label>
+			<input type='text' class="form-control" name='title' placeholder='Enter title'/>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputEmail1">Content</label>
+			<textarea name='content' class="form-control" row="3" placeholder='Enter content'></textarea>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputEmail1">Writer</label>
+			<input type='text' class="form-control" name='writer' value="${login.uid}" readonly/>
 		</div>
 		<div>
-			<label>Content</label>
-			<textarea name='content' row="3" placeholder='Enter content'></textarea>
+			<label>FileDrop Here</label>
+			<div id="fileDrop"></div>
 		</div>
-		<div>
-			<label>Writer</label>
-			<input type='text' name='writer' value="${login.uid}" readonly/>
+		<div class="col-md-10"></div>
+		<div class="col-md-1">
+			<button type="submit" class="btn btn-default">글쓰기</button>
 		</div>
-		<input type="submit" value="글쓰기"/>
 	</form>
 	
-	<div>
-		<label>FileDrop Here</label>
-		<div id="fileDrop"></div>
-	</div>
+	
 	
 	<ul id="uploadedList">
 	
 	</ul>
+
+</div>
 	
 </body>
 </html>
